@@ -2,7 +2,7 @@
 
 Inked is a full-stack MERN (MongoDB, Express.js, React, Node.js) application designed to help users manage their graphic novels. With features like listing, creating, modifying, and deleting graphic novels, user authentication via GitHub, user-friendly feedback using Toastify, error handling, and comprehensive testing, Inked provides a robust platform for graphic novel enthusiasts.
 
-:small_orange_diamond: Web displayed in the netlify url: https://gloria-talavera-final-project-202307.netlify.app/home
+:small_orange_diamond: Web displayed in the netlify url: https://inked-graphic-novels.netlify.app/home
 
 ## TECHNOLOGIES USED
 
