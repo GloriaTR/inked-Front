@@ -15,13 +15,13 @@ beforeEach(() => {
 
 describe("Given an App component", () => {
   describe("When is rendered", () => {
-    const store = setupStore({ comicsState: { comics: comicsMock } });
-
     const user: Partial<User> = { displayName: "Juana" };
 
     const authStateHookMock: Partial<AuthStateHook> = [user as User];
 
     auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+    const store = setupStore({ comicsState: { comics: comicsMock } });
 
     test("Then it should show the heading 'inked'", () => {
       const expectedHeading = "inked";
@@ -78,18 +78,18 @@ describe("Given an App component", () => {
     });
   });
 
+  const store = setupStore({ comicsState: { comics: comicsMock } });
+
+  vi.mock("firebase/auth", async () => {
+    const actual: Auth = await vi.importActual("firebase/auth");
+    return {
+      ...actual,
+      signOut: vi.fn(),
+      signInWithPopup: vi.fn(),
+    };
+  });
+
   describe("When the user is not logged in and clicks the 'Log in with GitHub' button", () => {
-    const store = setupStore({ comicsState: { comics: comicsMock } });
-
-    vi.mock("firebase/auth", async () => {
-      const actual: Auth = await vi.importActual("firebase/auth");
-      return {
-        ...actual,
-        signOut: vi.fn(),
-        signInWithPopup: vi.fn(),
-      };
-    });
-
     test("Then the received function should be called", async () => {
       const authStateHookMock: Partial<AuthStateHook> = [null];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
@@ -113,17 +113,6 @@ describe("Given an App component", () => {
   });
 
   describe("When the user is logged in and the logout button is clicked", () => {
-    const store = setupStore({ comicsState: { comics: comicsMock } });
-
-    vi.mock("firebase/auth", async () => {
-      const actual: Auth = await vi.importActual("firebase/auth");
-      return {
-        ...actual,
-        signOut: vi.fn(),
-        signInWithPopup: vi.fn(),
-      };
-    });
-
     test("Then the received function should be called", async () => {
       const user: Partial<User> = { displayName: "Juana" };
 
@@ -149,16 +138,21 @@ describe("Given an App component", () => {
     });
   });
 
+  const user: Partial<User> = {
+    displayName: "Juana",
+    getIdToken: vi.fn().mockResolvedValue("token"),
+  };
+
+  const authStateHookMock: Partial<AuthStateHook> = [user as User];
+  auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+  const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
+  auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
+
   describe("When the user clicks on the delete icon of the card 'My Favorite Thing is Monsters'", () => {
     const store = setupStore({ comicsState: { comics: comicsMock } });
 
     test("Then it shouldn't show the title 'My Favorite Thing is Monsters' inside a heading", async () => {
-      const user: Partial<User> = { displayName: "Juana" };
-
-      const authStateHookMock: Partial<AuthStateHook> = [user as User];
-
-      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
       const expectedHeading = "My Favorite Thing is Monsters";
 
       const deleteButtonAltText = "Delete Card Icon";
@@ -187,12 +181,6 @@ describe("Given an App component", () => {
     const store = setupStore({ comicsState: { comics: comicsMock } });
 
     test("Then it should show My List page with 'My Favorite Thing is Monsters' inside a heading", async () => {
-      const user: Partial<User> = { displayName: "Juana" };
-
-      const authStateHookMock: Partial<AuthStateHook> = [user as User];
-
-      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
       const textButton = "Create";
 
       const expectedHeading = "My Favorite Thing is Monsters";
@@ -272,17 +260,6 @@ describe("Given an App component", () => {
     test("Then it should navigate to its detail page and show the comic 'My Favorite Thing is Monsters' with author data heading 'About the author'", async () => {
       const store = setupStore({ comicsState: { comics: comicsMock } });
 
-      const user: Partial<User> = {
-        displayName: "Juana",
-        getIdToken: vi.fn().mockResolvedValue("token"),
-      };
-
-      const authStateHookMock: Partial<AuthStateHook> = [user as User];
-      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
-      const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
-      auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
-
       const detailPagePath = "/my-list/56fb9f23c733a4fut2810d7r";
       const comicHeading = "My Favorite Thing is Monsters Emil Ferris";
       const expectedHeading = "About the author";
@@ -317,17 +294,6 @@ describe("Given an App component", () => {
       const store = setupStore({
         comicsState: { comics: comicsMock },
       });
-
-      const user: Partial<User> = {
-        displayName: "Juana",
-        getIdToken: vi.fn().mockResolvedValue("token"),
-      };
-
-      const authStateHookMock: Partial<AuthStateHook> = [user as User];
-      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
-      const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
-      auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
 
       const previousButtonText = "✔ Read";
       const expectedButtonName = "Not Read";
