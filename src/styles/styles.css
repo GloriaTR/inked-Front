@@ -1,0 +1,54 @@
+:root {
+  --font-secondary: "Katibeh", sans-serif;
+  --font-primary: "DM Sans", sans-serif;
+  --color-green-light: #b7e4c7;
+  --color-green-dark: #1b4332;
+  --color-orange-light: #ffddb6;
+  --color-orange-dark: #ff6726;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-primary);
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+ul,
+li {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}

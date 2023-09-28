@@ -1,0 +1,34 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #000;
+}
+
+.error__status-code {
+  font-size: 3.125rem;
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+.error__text,
+.error__link {
+  font-size: 1.2rem;
+}
+
+.error__text {
+  text-align: center;
+  margin: 15px 0 30px;
+}
+
+.error__link {
+  background-color: var(--color-green-dark);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #fff;
+  font-weight: 700;
+}

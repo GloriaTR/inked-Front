@@ -1,0 +1,36 @@
+.header {
+  background-color: var(--color-green-light);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-title-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 15px 20px;
+}
+
+.header__title {
+  font-family: var(--font-secondary);
+  font-size: 3.4rem;
+}
+
+.button-header {
+  display: flex;
+  align-items: self-end;
+  padding-right: 20px;
+  padding-left: 0;
+}

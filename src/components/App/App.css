@@ -1,0 +1,16 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 180px 20px 40px;
+  min-height: 100vh;
+}
+
+.homepage-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+}

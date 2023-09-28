@@ -1,0 +1,88 @@
+.comic {
+  position: relative;
+  height: 190px;
+  padding: 20px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--color-green-dark);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  display: flex;
+  width: 280px;
+}
+
+.comic__image {
+  width: 92px;
+  height: 135px;
+  border-radius: 8px;
+  position: absolute;
+  top: -36px;
+  object-fit: cover;
+}
+
+.comic__title,
+.comic__author,
+.comic__release-date {
+  font-size: 1.08rem;
+}
+
+.comic__title {
+  font-weight: 700;
+}
+
+.comic__release-date {
+  color: #4c4747;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  width: 100px;
+}
+
+.comic-info {
+  flex: 1;
+  height: 83px;
+  justify-content: space-between;
+}
+
+.button-card {
+  height: 50px;
+  position: absolute;
+  left: 217px;
+  top: -35px;
+  padding-right: 0;
+}
+
+.comic-navigation,
+.comic-navigation.active {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #000000;
+}
+
+.comic__read-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 14px;
+  bottom: 20px;
+  width: 150px;
+  height: 48px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.comic__read-button--read {
+  background-color: var(--color-green-light);
+}
+
+.comic__read-button--unread {
+  background-color: var(--color-orange-dark);
+}
+
+.comic__release-date::after {
+  content: "\a";
+  white-space: pre;
+}
