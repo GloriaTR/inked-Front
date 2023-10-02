@@ -89,12 +89,12 @@ describe("Given an App component", () => {
     };
   });
 
-  describe("When the user is not logged in and clicks the 'Log in with GitHub' button", () => {
+  describe("When the user is not logged in and clicks the 'GitHub' button", () => {
     test("Then the received function should be called", async () => {
       const authStateHookMock: Partial<AuthStateHook> = [null];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
-      const loginTextButton = /Log in with GitHub/i;
+      const loginTextButton = /GitHub/i;
 
       render(
         <Provider store={store}>
@@ -105,6 +105,31 @@ describe("Given an App component", () => {
       );
 
       const loginButton = screen.getByRole("button", { name: loginTextButton });
+
+      await userEvent.click(loginButton);
+
+      expect(signInWithPopup).toHaveBeenCalled();
+    });
+  });
+
+  describe("When the user is not logged in and clicks the 'Google' button", () => {
+    test("Then the received function should be called", async () => {
+      const authStateHookMock: Partial<AuthStateHook> = [null];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const loginTextButton = /Google/i;
+
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Provider>,
+      );
+
+      const loginButton = screen.getByRole("button", {
+        name: loginTextButton,
+      });
 
       await userEvent.click(loginButton);
 
