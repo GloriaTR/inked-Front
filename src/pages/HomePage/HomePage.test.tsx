@@ -32,8 +32,9 @@ describe("Given a HomePage page", () => {
       expect(text).toBeInTheDocument();
     });
 
-    test("Then it should show a button with the text 'Log in with GitHub'", () => {
-      const expectedButtonName = /Log in with GitHub/i;
+    test("Then it should show two buttons, one with the text 'GitHub' and the other one with the text 'Google'", () => {
+      const expectedButtonNameGitHub = /GitHub/i;
+      const expectedButtonNameGoogle = /Google/i;
 
       render(
         <BrowserRouter>
@@ -41,9 +42,15 @@ describe("Given a HomePage page", () => {
         </BrowserRouter>,
       );
 
-      const button = screen.getByRole("button", { name: expectedButtonName });
+      const buttonGitHub = screen.getByRole("button", {
+        name: expectedButtonNameGitHub,
+      });
+      const buttonGoogle = screen.getByRole("button", {
+        name: expectedButtonNameGoogle,
+      });
 
-      expect(button).toBeInTheDocument();
+      expect(buttonGitHub).toBeInTheDocument();
+      expect(buttonGoogle).toBeInTheDocument();
     });
   });
 });

@@ -1,4 +1,4 @@
-import { auth, gitHubProvider } from "../../firebase";
+import { auth, gitHubProvider, googleProvider } from "../../firebase";
 import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
 import { Navigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -10,8 +10,12 @@ import "./HomePage.css";
 const HomePage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
 
-  const login = async () => {
+  const loginWithGitHub = async () => {
     await signInWithPopup(auth, gitHubProvider, browserPopupRedirectResolver);
+  };
+
+  const loginWithGoogle = async () => {
+    await signInWithPopup(auth, googleProvider, browserPopupRedirectResolver);
   };
 
   if (user) {
@@ -30,15 +34,26 @@ const HomePage = (): React.ReactElement => {
       <div className="login">
         <h2 className="login__title">Welcome to inked</h2>
         <p className="login__text">Log in to access your account</p>
-        <Button className="button-homepage" actionOnClick={login}>
-          <img
-            src="./img/gitHubIcon.svg"
-            alt="GitHub icon"
-            width="44"
-            height="44"
-          />
-          <span className="button-homepage__text">Log in with GitHub</span>
-        </Button>
+        <div className="button-homepage">
+          <Button className="button-login" actionOnClick={loginWithGitHub}>
+            <img
+              src="./img/gitHubIcon.svg"
+              alt="GitHub icon"
+              width="44"
+              height="44"
+            />
+            <span className="button-login__text">GitHub</span>
+          </Button>
+          <Button className="button-login" actionOnClick={loginWithGoogle}>
+            <img
+              src="./img/googleIcon.svg"
+              alt="Google icon"
+              width="44"
+              height="44"
+            />
+            <span className="button-login__text">Google</span>
+          </Button>
+        </div>
       </div>
     </>
   );
