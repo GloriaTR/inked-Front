@@ -56,9 +56,9 @@ describe("Given a GraphicNovelsListPage page", () => {
       expect(heading).toBeInTheDocument();
     });
 
-    test("And the the text 'Start your graphic novel adventure now. Press Create to start crafting your own!'", async () => {
+    test("And the the text 'Start your graphic novel adventure now. Press the button below to start crafting your own!'", async () => {
       const expectedNoComicsMessage =
-        "Start your graphic novel adventure now. Press Create to start crafting your own!";
+        "Start your graphic novel adventure now. Press the button below to start crafting your own!";
 
       render(
         <Provider store={store}>
