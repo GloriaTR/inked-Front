@@ -7,6 +7,8 @@ import { loadComicsActionCreator } from "../../store/comics/comicsSlice";
 import ComicsList from "../../components/ComicsList/ComicsList";
 import useComicsApi from "../../hooks/useComicsApi";
 import "./GraphicNovelsListPage.css";
+import { Link } from "react-router-dom";
+import paths from "../../paths/paths";
 
 const GraphicNovelsListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -54,10 +56,15 @@ const GraphicNovelsListPage = (): React.ReactElement => {
         ? !isLoadingAuth && !isLoadingUI && <ComicsList />
         : !isLoadingAuth &&
           !isLoadingUI && (
-            <p className="graphic-novels-page__no-comics">
-              Start your graphic novel adventure now. Press Create to start
-              crafting your own!
-            </p>
+            <>
+              <p className="graphic-novels-page__no-comics">
+                Start your graphic novel adventure now. Press the button below
+                to start crafting your own!
+              </p>
+              <Link className="create__link" to={paths.createGraphicNovel}>
+                Create Graphic Novel
+              </Link>
+            </>
           )}
     </>
   );

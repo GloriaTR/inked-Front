@@ -9,3 +9,19 @@
   text-align: center;
   margin: 0;
 }
+
+.create__link {
+  width: 240px;
+  height: 50px;
+  background: var(--color-green-dark);
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding: 10px 15px;
+  margin-top: 40px;
+}
