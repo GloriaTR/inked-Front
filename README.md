@@ -4,10 +4,9 @@ Inked is a full-stack MERN (MongoDB, Express.js, React, Node.js) mobile web appl
 
 :small_orange_diamond: Web displayed in the netlify url: https://inked-graphic-novels.netlify.app/home
 
-![inkedHomepage](https://media.discordapp.net/attachments/1145433728835923978/1159810830062334004/homepage.png?ex=65326102&is=651fec02&hm=d4c6f4970905078436818a430a00c83a0f4bc626eacdf9b166727b82bb31e5d1&=&width=295&height=557)![inkedMyList](https://media.discordapp.net/attachments/1145433728835923978/1159810967509676042/list.png?ex=65326122&is=651fec22&hm=f2a0da07b1f56a31430e4d11f46acf1da9f688cbf9bd5d3c2b9e9dbe3caad288&=&width=295&height=556)  
-![inkedCreate](https://media.discordapp.net/attachments/1145433728835923978/1159811090419556352/form.png?ex=65326140&is=651fec40&hm=a0e83935b858f533a1f17391e2054b724ae2dde560b98ed0fc11aa1ef820154f&=&width=297&height=557)![inkedDetail](https://media.discordapp.net/attachments/1145433728835923978/1159811234011549706/detail.png?ex=65326162&is=651fec62&hm=9658240928d65944b1a732e4ff3298a88ee5c746139c6db378ec36f57347e307&=&width=296&height=557)
+![inkedApp](https://media.discordapp.net/attachments/1145433728835923978/1159868608881639535/Group_120_1.png?ex=653296d1&is=652021d1&hm=6911a834b9f50aec913417b580fb5b9d1cdaf32e67c1f8bcb43247a647f289c8&=&width=388&height=557)
 
-## FEATURES
+## Features
 
 :small_orange_diamond: **List of Graphic Novels**: Inked allows users to view a list of their graphic novels, making it easy to keep track of their collection.
 
@@ -23,7 +22,7 @@ Inked is a full-stack MERN (MongoDB, Express.js, React, Node.js) mobile web appl
 
 :small_orange_diamond: **Toastify Feedback**: Users receive informative and user-friendly feedback using Toastify notifications, enhancing the overall user experience.
 
-## SCRIPTS
+## Scripts
 
 :small_orange_diamond: `npm run dev`
 
@@ -33,7 +32,7 @@ Inked is a full-stack MERN (MongoDB, Express.js, React, Node.js) mobile web appl
 
 :small_orange_diamond: `npm run test:coverage`
 
-## TECHNOLOGIES USED
+## Technologies
 
 - TypeScript
 - React
