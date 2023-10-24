@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import NewGraphicNovelForm from "../../components/NewGraphicNovelForm/NewGraphicNovelForm.js";
 import useComicsApi from "../../hooks/useComicsApi.js";
 import { addComicActionCreator } from "../../store/comics/comicsSlice.js";
@@ -24,13 +24,15 @@ const CreateGraphicNovelPage = (): React.ReactElement => {
 
   return (
     <>
-      <Helmet>
-        <title>Inked | Create a Graphic Novel</title>
-        <meta
-          name="description"
-          content="Fill the form and create a list of graphic novels"
-        ></meta>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Inked | Create a Graphic Novel</title>
+          <meta
+            name="description"
+            content="Fill the form and create a list of graphic novels"
+          ></meta>
+        </Helmet>
+      </HelmetProvider>
       <h2 className="create-graphic-novel-heading">Create a Graphic Novel</h2>
       <NewGraphicNovelForm actionOnSubmit={onSubmitNewComic} />
     </>
