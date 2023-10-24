@@ -2,7 +2,7 @@ import { auth, gitHubProvider, googleProvider } from "../../firebase";
 import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
 import { Navigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import Button from "../../components/Button/Button";
 import paths from "../../paths/paths";
 import "./HomePage.css";
@@ -24,13 +24,15 @@ const HomePage = (): React.ReactElement => {
 
   return (
     <>
-      <Helmet>
-        <title>Inked</title>
-        <meta
-          name="description"
-          content="Manage your graphic novels effortlessly. Log in to explore and organize your reading list."
-        ></meta>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Inked</title>
+          <meta
+            name="description"
+            content="Manage your graphic novels effortlessly. Log in to explore and organize your reading list."
+          ></meta>
+        </Helmet>
+      </HelmetProvider>
       <div className="login">
         <h2 className="login__title">Welcome to inked</h2>
         <p className="login__text">Log in to access your account</p>

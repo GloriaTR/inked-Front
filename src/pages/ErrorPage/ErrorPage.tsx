@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import paths from "../../paths/paths.js";
 import "./ErrorPage.css";
 
 const ErrorPage = (): React.ReactElement => {
   return (
     <>
-      <Helmet>
-        <title>Inked | Page Not Found</title>
-        <meta name="description" content="Page Not Found"></meta>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Inked | Page Not Found</title>
+          <meta name="description" content="Page Not Found"></meta>
+        </Helmet>
+      </HelmetProvider>
       <div className="error">
         <img
           className="error__image"

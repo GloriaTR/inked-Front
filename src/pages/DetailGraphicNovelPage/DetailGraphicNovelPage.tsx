@@ -2,7 +2,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import useComicsApi from "../../hooks/useComicsApi";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadSelectedComicActionCreator } from "../../store/comics/comicsSlice";
@@ -33,13 +33,15 @@ const DetailGraphicNovelPage = (): React.ReactElement => {
 
   return (
     <>
-      <Helmet>
-        <title>{`Inked | ${selectedComic?.title}`}</title>
-        <meta
-          name="description"
-          content={`See all information regarding ${selectedComic?.title}`}
-        ></meta>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>{`Inked | ${selectedComic?.title}`}</title>
+          <meta
+            name="description"
+            content={`See all information regarding ${selectedComic?.title}`}
+          ></meta>
+        </Helmet>
+      </HelmetProvider>
       <div className="detail">
         <div className="detail-image">
           <img

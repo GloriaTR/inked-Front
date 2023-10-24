@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadComicsActionCreator } from "../../store/comics/comicsSlice";
 import ComicsList from "../../components/ComicsList/ComicsList";
@@ -44,13 +44,15 @@ const GraphicNovelsListPage = (): React.ReactElement => {
 
   return (
     <>
-      <Helmet>
-        <title>Inked | My List</title>
-        <meta
-          name="description"
-          content="See a list of your read and pending graphic novels"
-        ></meta>
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <title>Inked | My List</title>
+          <meta
+            name="description"
+            content="See a list of your read and pending graphic novels"
+          ></meta>
+        </Helmet>
+      </HelmetProvider>
       <h2 className="graphic-novels-page-heading">Your Graphic Novels</h2>
       {hasComics
         ? !isLoadingAuth && !isLoadingUI && <ComicsList />
