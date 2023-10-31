@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Comic } from "../../types";
 import Button from "../Button/Button";
 import "./NewGraphicNovelForm.css";
@@ -27,6 +27,8 @@ const NewGraphicNovelForm = ({
 
   const [newComic, setNewComic] = useState<Omit<Comic, "id">>(initialComicData);
 
+  const [disabled, setDisabled] = useState(true);
+
   const changeNewComic = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -43,6 +45,14 @@ const NewGraphicNovelForm = ({
 
     actionOnSubmit(newComic);
   };
+
+  useEffect(() => {
+    setDisabled(
+      !Object.values(newComic).every((value) => {
+        return value.toString().length >= 1;
+      }),
+    );
+  }, [newComic]);
 
   return (
     <form className="new-graphic-novel" onSubmit={submitForm}>
@@ -158,7 +168,7 @@ const NewGraphicNovelForm = ({
         value={newComic.authorBiography}
         onChange={changeNewComic}
       ></textarea>
-      <Button className="button button-form" type="submit">
+      <Button className="button button-form" type="submit" disabled={disabled}>
         Create
       </Button>
     </form>
