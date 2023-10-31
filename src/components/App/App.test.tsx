@@ -213,8 +213,10 @@ describe("Given an App component", () => {
       const graphicNovelImageInputLabel = "Graphic Novel image";
       const titleInputLabel = "Graphic Novel title";
       const authorNameInputLabel = "Author name";
+      const genreInputLabel = "Genre";
       const synopsisInputLabel = "Synopsis";
       const pagesInputLabel = "Number of pages";
+      const coverInputLabel = "Type of cover";
       const releaseInputLabel = "Year of release";
       const authorImageInputLabel = "Author image";
       const workInputLabel = "Notable work";
@@ -223,8 +225,10 @@ describe("Given an App component", () => {
       const graphicNovelImageInputText = comicMock.image;
       const titleInputText = comicMock.title;
       const authorNameInputText = comicMock.authorName;
+      const genreInputText = comicMock.genre;
       const synopsisInputText = comicMock.synopsis;
       const pagesInputText = comicMock.numberPages;
+      const coverInputText = comicMock.coverType;
       const releaseInputText = comicMock.releaseDate;
       const authorImageInputText = comicMock.authorImage;
       const workInputText = comicMock.authorNotableWork;
@@ -247,8 +251,10 @@ describe("Given an App component", () => {
       const authorNameInput = await screen.findByLabelText(
         authorNameInputLabel,
       );
+      const genreInput = await screen.findByLabelText(genreInputLabel);
       const synopsisInput = await screen.findByLabelText(synopsisInputLabel);
       const pagesInput = await screen.findByLabelText(pagesInputLabel);
+      const coverInput = await screen.findByLabelText(coverInputLabel);
       const releaseInput = await screen.findByLabelText(releaseInputLabel);
       const authorImageInput = await screen.findByLabelText(
         authorImageInputLabel,
@@ -263,8 +269,10 @@ describe("Given an App component", () => {
       );
       await userEvent.type(titleInput, titleInputText, config);
       await userEvent.type(authorNameInput, authorNameInputText, config);
+      await userEvent.selectOptions(genreInput, genreInputText, config);
       await userEvent.type(synopsisInput, synopsisInputText, config);
       await userEvent.type(pagesInput, pagesInputText.toString(), config);
+      await userEvent.selectOptions(coverInput, coverInputText, config);
       await userEvent.type(releaseInput, releaseInputText.toString(), config);
       await userEvent.type(authorImageInput, authorImageInputText, config);
       await userEvent.type(workInput, workInputText, config);
