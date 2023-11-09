@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import Header from "../Header/Header";
 import paths from "../../paths/paths";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import Footer from "../Footer/Footer";
 import HomePageLazy from "../../pages/HomePage/HomePage";
 import Loading from "../Loading/Loading";
 import { useAppSelector } from "../../store";
@@ -89,7 +88,6 @@ const App = (): React.ReactElement => {
         </Routes>
         {isLoading && <Loading />}
       </main>
-      <Footer />
     </>
   );
 };
