@@ -15,52 +15,66 @@ const Navigation = (): React.ReactElement => {
     await signOut(auth);
   };
 
+  const isMyListPage = pathname === paths.myList;
+  const isCreateGraphicNovelPage = pathname === paths.createGraphicNovel;
+
   return (
     <>
       {user && (
-        <nav className="navigation-container">
+        <nav className="navigation">
           <ul className="navigation-list">
-            <li className="navigation-list__options">
+            <li>
               <NavLink
                 className={
-                  pathname === paths.myList
+                  isMyListPage
                     ? "navigation-list__link"
                     : "navigation-list__link--inactive"
                 }
                 to={paths.myList}
               >
                 <img
-                  src="/img/homeIconBlack.svg"
-                  alt="home logo"
+                  src={
+                    isMyListPage
+                      ? "/img/homeIconOrange.svg"
+                      : "/img/homeIconBlack.svg"
+                  }
+                  alt="home icon"
                   width="40"
                   height="40"
                 />
-                <span>My List</span>
+                <span className="navigation-list__text">My List</span>
               </NavLink>
             </li>
-            <li className="navigation-list__options">
+            <li>
               <NavLink
                 className="navigation-list__link"
                 to={paths.createGraphicNovel}
               >
                 <img
-                  src="/img/createIconBlack.svg"
-                  alt="create logo"
+                  src={
+                    isCreateGraphicNovelPage
+                      ? "/img/createIconOrange.svg"
+                      : "/img/createIconBlack.svg"
+                  }
+                  alt="create icon"
                   width="40"
                   height="40"
                 />
-                <span>Create</span>
+                <span className="navigation-list__text">Create</span>
               </NavLink>
             </li>
-            <li className="navigation-list__options">
-              <Button className="button button-header" actionOnClick={logout}>
+            <li>
+              <Button
+                className="button navigation-list__button"
+                actionOnClick={logout}
+              >
                 <img
                   src="/img/logOutButtonBlack.svg"
-                  alt="Logout button"
+                  alt="Logout button icon"
                   width="40"
                   height="40"
                 />
-                <span>Log Out</span>
+                <span className="navigation-list__text">Log Out</span>
               </Button>
             </li>
           </ul>
