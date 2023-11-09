@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
 import Header from "../Header/Header";
 import paths from "../../paths/paths";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -13,6 +15,7 @@ import {
   ErrorPageLazy,
   GraphicNovelsListPageLazy,
 } from "../../pages/LazyPages/LazyPages";
+import Navigation from "../Navigation/Navigation";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -21,6 +24,8 @@ const App = (): React.ReactElement => {
   const isHomePage = location.pathname === paths.home;
 
   const isLoading = useAppSelector((state) => state.uiState.isLoading);
+
+  const [user] = useAuthState(auth);
 
   return (
     <>
@@ -88,6 +93,7 @@ const App = (): React.ReactElement => {
         </Routes>
         {isLoading && <Loading />}
       </main>
+      {user && <Navigation />}
     </>
   );
 };
