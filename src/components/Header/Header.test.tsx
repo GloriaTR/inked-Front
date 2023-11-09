@@ -44,19 +44,5 @@ describe("Given a Header component", () => {
 
       expect(logoImage).toBeInTheDocument();
     });
-
-    test("Then it should show a button with the name 'Logout button'", () => {
-      const expectedButtonName = "Logout button";
-
-      render(
-        <BrowserRouter>
-          <Header />
-        </BrowserRouter>,
-      );
-
-      const button = screen.getByRole("button", { name: expectedButtonName });
-
-      expect(button).toBeInTheDocument();
-    });
   });
 });

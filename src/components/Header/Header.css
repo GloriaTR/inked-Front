@@ -1,23 +1,12 @@
 .header {
   background-color: var(--color-green-light);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  padding-top: 10px;
+  padding: 15px 20px;
   position: absolute;
-  z-index: 1;
   width: 100%;
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0 20px 10px;
-  height: 63px;
-}
-
-.header-title-logo {
+.header-logo-title {
   display: flex;
   gap: 8px;
 }
@@ -25,10 +14,5 @@
 .header__title {
   font-size: 2.3rem;
   line-height: 2;
-}
-
-.button-header {
-  display: flex;
-  align-items: flex-end;
-  padding: 0;
+  height: 53px;
 }
