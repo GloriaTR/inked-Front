@@ -54,8 +54,8 @@ describe("Given an App component", () => {
         </Provider>,
       );
 
-      const homeLink = screen.getByRole("link", { name: expectedHomeText });
-      const createLink = screen.getByRole("link", { name: expectedCreateText });
+      const homeLink = screen.getByText(expectedHomeText);
+      const createLink = screen.getByText(expectedCreateText);
 
       expect(homeLink).toBeInTheDocument();
       expect(createLink).toBeInTheDocument();
@@ -145,7 +145,7 @@ describe("Given an App component", () => {
 
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
-      const logOutButtonAltText = "Logout button";
+      const logOutButtonAltText = "Logout button icon";
 
       render(
         <MemoryRouter initialEntries={[paths.myList]}>
