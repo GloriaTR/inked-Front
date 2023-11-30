@@ -3,12 +3,16 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { loadComicsActionCreator } from "../../store/comics/comicsSlice";
+import {
+  loadComicsActionCreator,
+  loadMoreComicsActionCreator,
+} from "../../store/comics/comicsSlice";
 import ComicsList from "../../components/ComicsList/ComicsList";
 import useComicsApi from "../../hooks/useComicsApi";
 import "./GraphicNovelsListPage.css";
 import { Link } from "react-router-dom";
 import paths from "../../paths/paths";
+import LoadMore from "../../components/LoadMore/LoadMore";
 
 const GraphicNovelsListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -22,25 +26,45 @@ const GraphicNovelsListPage = (): React.ReactElement => {
 
   const isLoadingUI = useAppSelector((state) => state.uiState.isLoading);
 
-  const preloadImage = (image: string) => {
-    const preloadImageLink = document.createElement("link");
-    preloadImageLink.href = image;
-    preloadImageLink.rel = "preload";
-    preloadImageLink.as = "image";
-    document.head.appendChild(preloadImageLink);
-  };
+  const totalComics = useAppSelector((state) => state.comicsState.totalComics);
+  const limit = useAppSelector((state) => state.comicsState.limit);
 
   useEffect(() => {
+    const params = {
+      limit: limit,
+    };
+
     (async () => {
       if (user) {
-        const comics = await getComics();
+        const { comics, totalComics } = await getComics({ ...params });
 
-        dispatch(loadComicsActionCreator(comics));
+        if (comics) {
+          dispatch(
+            loadComicsActionCreator({
+              comics: comics,
+              totalComics: totalComics,
+            }),
+          );
+        }
 
-        preloadImage(comics[0].image);
+        const parent = document.head;
+        const firstChild = document.head.firstChild;
+
+        for (let i = 0; i < 5; i++) {
+          const preloadImageLink = document.createElement("link");
+          preloadImageLink.rel = "preload";
+          preloadImageLink.as = "image";
+          preloadImageLink.href = comics[0].image;
+
+          parent.insertBefore(preloadImageLink, firstChild);
+        }
       }
     })();
-  }, [dispatch, getComics, user]);
+  }, [dispatch, getComics, user, limit]);
+
+  const handleOnLoadMore = () => {
+    dispatch(loadMoreComicsActionCreator());
+  };
 
   return (
     <>
@@ -55,7 +79,15 @@ const GraphicNovelsListPage = (): React.ReactElement => {
       </HelmetProvider>
       <h2 className="graphic-novels-page-heading">Your Graphic Novels</h2>
       {hasComics
-        ? !isLoadingAuth && !isLoadingUI && <ComicsList />
+        ? !isLoadingAuth &&
+          !isLoadingUI && (
+            <>
+              <ComicsList />
+              {totalComics > limit && (
+                <LoadMore actionOnClick={handleOnLoadMore} />
+              )}
+            </>
+          )
         : !isLoadingAuth &&
           !isLoadingUI && (
             <>
