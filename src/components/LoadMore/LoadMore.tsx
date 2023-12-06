@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import "./LoadMore.css";
 
 interface LoadMoreProps {
   actionOnClick: () => void;
