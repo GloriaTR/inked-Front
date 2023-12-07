@@ -18,14 +18,14 @@ const useComicsApi = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  interface params {
+  interface Params {
     limit: number;
   }
 
   const getComics = useCallback(
     async ({
       limit,
-    }: params): Promise<{
+    }: Params): Promise<{
       comics: Comic[];
       totalComics: number;
     }> => {

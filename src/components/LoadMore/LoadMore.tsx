@@ -7,11 +7,9 @@ interface LoadMoreProps {
 
 const LoadMore = ({ actionOnClick }: LoadMoreProps): React.ReactElement => {
   return (
-    <>
-      <Button className="button button-loadMore" actionOnClick={actionOnClick}>
-        Load More
-      </Button>
-    </>
+    <Button className="button button-loadMore" actionOnClick={actionOnClick}>
+      Load More
+    </Button>
   );
 };
 

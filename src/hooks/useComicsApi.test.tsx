@@ -9,6 +9,7 @@ import {
   comicMock,
   comicToggleMock,
   comicsMock,
+  paramsMock,
 } from "../mocks/comicsMock";
 import useComicsApi from "./useComicsApi";
 import { server } from "../mocks/server";
@@ -28,7 +29,13 @@ auth.useIdToken = vi.fn().mockReturnValue([user as User]);
 auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-  const store = setupStore({ comicsState: { comics: comicsMock } });
+  const store = setupStore({
+    comicsState: {
+      comics: comicsMock,
+      totalComics: comicsMock.length,
+      limit: 5,
+    },
+  });
 
   return (
     <BrowserRouter>
@@ -40,7 +47,10 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
 describe("Given a getComics function", () => {
   describe("When is called", () => {
     test("Then it should return a list of comics when resolving successfully", async () => {
-      const expectedComics = comicsMock;
+      const expectedComics = {
+        comics: comicsMock,
+        totalComics: comicsMock.length,
+      };
 
       const {
         result: {
@@ -48,7 +58,7 @@ describe("Given a getComics function", () => {
         },
       } = renderHook(() => useComicsApi(), { wrapper });
 
-      const comics = await getComics();
+      const comics = await getComics({ ...paramsMock });
 
       expect(comics).toStrictEqual(expectedComics);
     });
@@ -64,7 +74,7 @@ describe("Given a getComics function", () => {
         },
       } = renderHook(() => useComicsApi(), { wrapper });
 
-      const comics = getComics();
+      const comics = getComics({ ...paramsMock });
 
       expect(comics).rejects.toThrowError(expectedError);
     });

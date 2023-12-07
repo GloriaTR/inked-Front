@@ -6,7 +6,13 @@ import { ComicsState } from "../types";
 describe("Given a comicsSlice reducer", () => {
   describe("When it receives an addComic action with a new comic", () => {
     test("Then it should return a new state with a new comic added", () => {
-      const currentComicsState: ComicsState = { comics: comicsMock };
+      const limitNumber = 5;
+
+      const currentComicsState: ComicsState = {
+        comics: comicsMock,
+        totalComics: 2,
+        limit: limitNumber,
+      };
 
       const comicToAdd: Comic = comicMock;
 

@@ -16,6 +16,7 @@ export interface Comic {
 
 export interface ComicsApi {
   comics: ComicApi[];
+  totalComics: number;
 }
 
 export interface ComicApi extends Omit<Comic, "id"> {

@@ -12,7 +12,11 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-const store = setupStore({ comicsState: { comics: comicsMock } });
+const limitNumber = 5;
+
+const store = setupStore({
+  comicsState: { comics: comicsMock, totalComics: 2, limit: limitNumber },
+});
 
 describe("Given a CreateGraphicNovelPage page", () => {
   describe("When is rendered", () => {
