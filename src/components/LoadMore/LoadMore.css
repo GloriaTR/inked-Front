@@ -1,0 +1,11 @@
+.button-loadMore {
+  background-color: var(--color-green-dark);
+  color: #fff;
+  width: 150px;
+  height: 48px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border-radius: 4px;
+  align-self: center;
+  margin-top: 40px;
+}

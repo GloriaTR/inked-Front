@@ -13,6 +13,8 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
+const limitNumber = 5;
+
 describe("Given an App component", () => {
   describe("When is rendered", () => {
     const user: Partial<User> = { displayName: "Juana" };
@@ -21,7 +23,9 @@ describe("Given an App component", () => {
 
     auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
-    const store = setupStore({ comicsState: { comics: comicsMock } });
+    const store = setupStore({
+      comicsState: { comics: comicsMock, totalComics: 2, limit: limitNumber },
+    });
 
     test("Then it should show the heading 'inked'", () => {
       const expectedHeading = "inked";
@@ -78,7 +82,9 @@ describe("Given an App component", () => {
     });
   });
 
-  const store = setupStore({ comicsState: { comics: comicsMock } });
+  const store = setupStore({
+    comicsState: { comics: comicsMock, totalComics: 2, limit: limitNumber },
+  });
 
   vi.mock("firebase/auth", async () => {
     const actual: Auth = await vi.importActual("firebase/auth");
@@ -175,7 +181,9 @@ describe("Given an App component", () => {
   auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
 
   describe("When the user clicks on the delete icon of the card 'My Favorite Thing is Monsters'", () => {
-    const store = setupStore({ comicsState: { comics: comicsMock } });
+    const store = setupStore({
+      comicsState: { comics: comicsMock, totalComics: 2, limit: limitNumber },
+    });
 
     test("Then it shouldn't show the title 'My Favorite Thing is Monsters' inside a heading", async () => {
       const expectedHeading = "My Favorite Thing is Monsters";
@@ -203,7 +211,9 @@ describe("Given an App component", () => {
   });
 
   describe("When the user creates the comic 'My Favorite Thing is Monsters' through the Create page", () => {
-    const store = setupStore({ comicsState: { comics: comicsMock } });
+    const store = setupStore({
+      comicsState: { comics: comicsMock, totalComics: 2, limit: limitNumber },
+    });
 
     test("Then it should show My List page with 'My Favorite Thing is Monsters' inside a heading", async () => {
       const textButton = "Create";
@@ -291,7 +301,9 @@ describe("Given an App component", () => {
 
   describe("When the user clicks on the 'My Favorite Thing is Monsters' comic", () => {
     test("Then it should navigate to its detail page and show the comic 'My Favorite Thing is Monsters' with author data heading 'About the author'", async () => {
-      const store = setupStore({ comicsState: { comics: comicsMock } });
+      const store = setupStore({
+        comicsState: { comics: comicsMock, totalComics: 2, limit: limitNumber },
+      });
 
       const detailPagePath = "/my-list/56fb9f23c733a4fut2810d7r";
       const comicHeading = "My Favorite Thing is Monsters Emil Ferris";
@@ -325,7 +337,7 @@ describe("Given an App component", () => {
   describe("When the user clicks on the 'Read' button in the 'My Favorite Thing is Monsters' card", () => {
     test("Then it should toggle the button to 'Not Read'", async () => {
       const store = setupStore({
-        comicsState: { comics: comicsMock },
+        comicsState: { comics: comicsMock, totalComics: 2, limit: limitNumber },
       });
 
       const previousButtonText = "✔ Read";

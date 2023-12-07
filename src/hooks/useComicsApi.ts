@@ -3,13 +3,13 @@ import { useCallback } from "react";
 import { useIdToken } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Comic, ComicApi } from "../types";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
 } from "../store/ui/uiSlice";
 import showFeedback from "../showFeedback/showFeedback";
-import { useNavigate } from "react-router-dom";
 import paths from "../paths/paths";
 
 const useComicsApi = () => {
@@ -18,35 +18,47 @@ const useComicsApi = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const getComics = useCallback(async () => {
-    dispatch(showLoadingActionCreator());
+  interface Params {
+    limit: number;
+  }
 
-    const token = await user?.getIdToken();
+  const getComics = useCallback(
+    async ({
+      limit,
+    }: Params): Promise<{
+      comics: Comic[];
+      totalComics: number;
+    }> => {
+      dispatch(showLoadingActionCreator());
 
-    try {
-      const { data: apiComics } = await axios.get<{ comics: ComicApi[] }>(
-        `${apiUrl}/comics`,
-        {
+      const token = await user?.getIdToken();
+
+      try {
+        const { data } = await axios.get<{
+          comics: ComicApi[];
+          totalComics: number;
+        }>(`${apiUrl}/comics?limit=${limit}`, {
           headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+        });
 
-      dispatch(hideLoadingActionCreator());
+        dispatch(hideLoadingActionCreator());
 
-      const comics = apiComics.comics.map<Comic>(({ _id, ...comics }) => ({
-        ...comics,
-        id: _id,
-      }));
+        const comics = data.comics.map<Comic>(({ _id, ...comics }) => ({
+          ...comics,
+          id: _id,
+        }));
 
-      return comics;
-    } catch {
-      dispatch(hideLoadingActionCreator());
+        return { comics, totalComics: data.totalComics };
+      } catch {
+        dispatch(hideLoadingActionCreator());
 
-      showFeedback("Couldn't load Graphic Novels", "error");
+        showFeedback("Couldn't load Graphic Novels", "error");
 
-      throw new Error("Couldn't load Graphic Novels");
-    }
-  }, [apiUrl, user, dispatch]);
+        throw new Error("Couldn't load Graphic Novels");
+      }
+    },
+    [apiUrl, user, dispatch],
+  );
 
   const deleteComic = async (id: string) => {
     dispatch(showLoadingActionCreator());

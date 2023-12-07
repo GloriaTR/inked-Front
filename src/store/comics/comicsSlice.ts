@@ -5,6 +5,8 @@ import { Comic } from "../../types.js";
 const initialComicsState: ComicsState = {
   comics: [],
   selectedComic: {} as Comic,
+  limit: 5,
+  totalComics: 0,
 };
 
 export const comicsSlice = createSlice({
@@ -13,10 +15,11 @@ export const comicsSlice = createSlice({
   reducers: {
     loadComics: (
       currentComicsState,
-      action: PayloadAction<Comic[]>,
+      action: PayloadAction<{ comics: Comic[]; totalComics: number }>,
     ): ComicsState => ({
       ...currentComicsState,
-      comics: action.payload,
+      comics: [...action.payload.comics],
+      totalComics: action.payload.totalComics,
     }),
     deleteComic: (
       currentComicsState,
@@ -31,7 +34,7 @@ export const comicsSlice = createSlice({
       currentComicState,
       action: PayloadAction<Comic>,
     ): ComicsState => ({
-      ...currentComicState.comics,
+      ...currentComicState,
       comics: [...currentComicState.comics, action.payload],
     }),
     loadSelectedComic: (
@@ -51,6 +54,10 @@ export const comicsSlice = createSlice({
         comic.id === action.payload.id ? action.payload : comic,
       ),
     }),
+    loadMoreComics: (currentComicState): ComicsState => ({
+      ...currentComicState,
+      limit: currentComicState.limit + 5,
+    }),
   },
 });
 
@@ -61,4 +68,5 @@ export const {
   addComic: addComicActionCreator,
   loadSelectedComic: loadSelectedComicActionCreator,
   toggleSelectedComic: toggleSelectedComicActionCreator,
+  loadMoreComics: loadMoreComicsActionCreator,
 } = comicsSlice.actions;

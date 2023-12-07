@@ -6,8 +6,15 @@ import DetailGraphicNovelPage from "./DetailGraphicNovelPage";
 import { comicMock, comicsMock } from "../../mocks/comicsMock";
 import paths from "../../paths/paths";
 
+const limitNumber = 5;
+
 const store = setupStore({
-  comicsState: { comics: comicsMock, selectedComic: comicMock },
+  comicsState: {
+    comics: comicsMock,
+    selectedComic: comicMock,
+    totalComics: 2,
+    limit: limitNumber,
+  },
 });
 
 const pathSelectedComic = `${paths.myList}/${comicMock.id}`;

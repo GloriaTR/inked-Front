@@ -6,7 +6,15 @@ import ComicCard from "./ComicCard";
 import { setupStore } from "../../store";
 
 describe("Given a ComicCard component", () => {
-  const store = setupStore({ comicsState: { comics: comicsMock } });
+  const limitNumber = 5;
+
+  const store = setupStore({
+    comicsState: {
+      comics: comicsMock,
+      totalComics: 2,
+      limit: limitNumber,
+    },
+  });
 
   describe("When is rendered", () => {
     test("Then it should show the heading 'My Favorite Thing is Monsters'", () => {
