@@ -3,7 +3,7 @@ import ComicCard from "../ComicCard/ComicCard";
 import "./ComicsList.css";
 
 const ComicsList = (): React.ReactElement => {
-  const comics = useAppSelector((state) => state.comicsState.comics);
+  const { comics } = useAppSelector((state) => state.comicsState);
 
   return (
     <ul className="comics-list">

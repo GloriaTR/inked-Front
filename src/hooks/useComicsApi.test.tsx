@@ -9,7 +9,6 @@ import {
   comicMock,
   comicToggleMock,
   comicsMock,
-  paramsMock,
 } from "../mocks/comicsMock";
 import useComicsApi from "./useComicsApi";
 import { server } from "../mocks/server";
@@ -58,7 +57,7 @@ describe("Given a getComics function", () => {
         },
       } = renderHook(() => useComicsApi(), { wrapper });
 
-      const comics = await getComics({ ...paramsMock });
+      const comics = await getComics();
 
       expect(comics).toStrictEqual(expectedComics);
     });
@@ -74,7 +73,7 @@ describe("Given a getComics function", () => {
         },
       } = renderHook(() => useComicsApi(), { wrapper });
 
-      const comics = getComics({ ...paramsMock });
+      const comics = getComics();
 
       expect(comics).rejects.toThrowError(expectedError);
     });

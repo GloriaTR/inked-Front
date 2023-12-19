@@ -23,7 +23,7 @@ const App = (): React.ReactElement => {
   const location = useLocation();
   const isHomePage = location.pathname === paths.home;
 
-  const isLoading = useAppSelector((state) => state.uiState.isLoading);
+  const { isLoading } = useAppSelector((state) => state.uiState);
 
   const [user] = useAuthState(auth);
 
