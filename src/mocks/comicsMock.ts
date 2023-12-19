@@ -147,10 +147,6 @@ export const comicToggleMock = {
   isRead: false,
 };
 
-export const paramsMock = {
-  limit: 10,
-};
-
 export const loadMoreComicsMock: Comic[] = [
   {
     id: "56fb9f23c733a4fut2810d7t",

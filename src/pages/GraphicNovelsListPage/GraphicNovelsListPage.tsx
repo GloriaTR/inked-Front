@@ -17,26 +17,20 @@ import LoadMore from "../../components/LoadMore/LoadMore";
 const GraphicNovelsListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
 
-  const comics = useAppSelector((state) => state.comicsState.comics);
-  const hasComics = comics.length > 0;
+  const { comics } = useAppSelector((state) => state.comicsState);
 
   const { getComics } = useComicsApi();
 
   const [user, isLoadingAuth] = useAuthState(auth);
-
   const isLoadingUI = useAppSelector((state) => state.uiState.isLoading);
 
-  const totalComics = useAppSelector((state) => state.comicsState.totalComics);
-  const limit = useAppSelector((state) => state.comicsState.limit);
+  const { totalComics } = useAppSelector((state) => state.comicsState);
+  const { limit } = useAppSelector((state) => state.comicsState);
 
   useEffect(() => {
-    const params = {
-      limit: limit,
-    };
-
     (async () => {
       if (user) {
-        const { comics, totalComics } = await getComics({ ...params });
+        const { comics, totalComics } = await getComics();
 
         if (comics) {
           dispatch(
@@ -45,22 +39,22 @@ const GraphicNovelsListPage = (): React.ReactElement => {
               totalComics: totalComics,
             }),
           );
-        }
 
-        const parent = document.head;
-        const firstChild = document.head.firstChild;
+          const parent = document.head;
+          const firstChild = document.head.firstChild;
 
-        for (let i = 0; i < 5; i++) {
-          const preloadImageLink = document.createElement("link");
-          preloadImageLink.rel = "preload";
-          preloadImageLink.as = "image";
-          preloadImageLink.href = comics[0].image;
+          for (let i = 0; i < 5; i++) {
+            const preloadImageLink = document.createElement("link");
+            preloadImageLink.rel = "preload";
+            preloadImageLink.as = "image";
+            preloadImageLink.href = comics[0].image;
 
-          parent.insertBefore(preloadImageLink, firstChild);
+            parent.insertBefore(preloadImageLink, firstChild);
+          }
         }
       }
     })();
-  }, [dispatch, getComics, user, limit]);
+  }, [dispatch, getComics, user]);
 
   const handleOnLoadMore = () => {
     dispatch(loadMoreComicsActionCreator());
@@ -78,28 +72,22 @@ const GraphicNovelsListPage = (): React.ReactElement => {
         </Helmet>
       </HelmetProvider>
       <h2 className="graphic-novels-page-heading">Your Graphic Novels</h2>
-      {hasComics
-        ? !isLoadingAuth &&
-          !isLoadingUI && (
-            <>
-              <ComicsList />
-              {totalComics > limit && (
-                <LoadMore actionOnClick={handleOnLoadMore} />
-              )}
-            </>
-          )
-        : !isLoadingAuth &&
-          !isLoadingUI && (
-            <>
-              <p className="graphic-novels-page__no-comics">
-                Start your graphic novel adventure now. Press the button below
-                to start crafting your own!
-              </p>
-              <Link className="create__link" to={paths.createGraphicNovel}>
-                Create Graphic Novel
-              </Link>
-            </>
-          )}
+      {comics.length === 0 && !isLoadingUI && !isLoadingAuth ? (
+        <>
+          <p className="graphic-novels-page__no-comics">
+            Start your graphic novel adventure now. Press the button below to
+            start crafting your own!
+          </p>
+          <Link className="create__link" to={paths.createGraphicNovel}>
+            Create Graphic Novel
+          </Link>
+        </>
+      ) : (
+        <>
+          <ComicsList />
+          {totalComics > limit && <LoadMore actionOnClick={handleOnLoadMore} />}
+        </>
+      )}
     </>
   );
 };

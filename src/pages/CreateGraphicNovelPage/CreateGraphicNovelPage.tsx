@@ -20,6 +20,8 @@ const CreateGraphicNovelPage = (): React.ReactElement => {
 
     dispatch(addComicActionCreator(newComic));
     navigate(paths.myList);
+
+    window.scrollTo(0, 0);
   };
 
   return (
