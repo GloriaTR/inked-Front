@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import { FaAngleUp } from "react-icons/fa";
+import "./ScrollButton.css";
 
 const ScrollButton = (): React.ReactElement => {
   const [showTopButton, setShowTopButton] = useState(false);

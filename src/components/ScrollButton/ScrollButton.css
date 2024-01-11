@@ -1,0 +1,20 @@
+.button-position {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  z-index: 1;
+}
+
+.icon-style {
+  background-color: var(--color-orange-dark);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.icon-style:hover {
+  background-color: #fff;
+  border: 2px solid var(--color-orange-dark);
+  color: var(--color-orange-dark);
+}
