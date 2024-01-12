@@ -27,7 +27,7 @@ const ScrollButton = (): React.ReactElement => {
     <>
       {showTopButton && (
         <Button className="button button-position" actionOnClick={scrollToTop}>
-          <FaAngleUp className="icon-style" aria-label="Scroll to top icon" />
+          <FaAngleUp className="icon-style" aria-label="Scroll to top button" />
         </Button>
       )}
     </>
