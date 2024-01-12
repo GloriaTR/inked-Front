@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
   loadComicsActionCreator,
@@ -9,10 +10,10 @@ import {
 } from "../../store/comics/comicsSlice";
 import ComicsList from "../../components/ComicsList/ComicsList";
 import useComicsApi from "../../hooks/useComicsApi";
-import "./GraphicNovelsListPage.css";
-import { Link } from "react-router-dom";
 import paths from "../../paths/paths";
 import LoadMore from "../../components/LoadMore/LoadMore";
+import ScrollButton from "../../components/ScrollButton/ScrollButton";
+import "./GraphicNovelsListPage.css";
 
 const GraphicNovelsListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -86,6 +87,7 @@ const GraphicNovelsListPage = (): React.ReactElement => {
         <>
           <ComicsList />
           {totalComics > limit && <LoadMore actionOnClick={handleOnLoadMore} />}
+          <ScrollButton />
         </>
       )}
     </>
