@@ -8,7 +8,7 @@ Inked is a full-stack MERN (MongoDB, Express.js, React, Node.js) mobile web appl
 
 ## Features
 
-:small_orange_diamond: **List of Graphic Novels**: Inked allows users to view a list of their graphic novels, making it easy to keep track of their collection.
+:small_orange_diamond: **List of Graphic Novels**: Inked allows users to view a list of their graphic novels, making it easy to keep track of their collection. Users will be able to load all the graphic novels stored by cliking the "Load More" button. The items will load five by five. In addition, for greater user convenience, a scroll to top button has been included. Every time the user scrolls downs the list, they can go back to the top with just one click.
 
 :small_orange_diamond: **Graphic Novels Details**: For each graphic novel, there is a dedicated detail page providing additional information and a closer look at the selected item.
 
@@ -18,7 +18,7 @@ Inked is a full-stack MERN (MongoDB, Express.js, React, Node.js) mobile web appl
 
 :small_orange_diamond: **Delete Graphic Novel**: Unwanted graphic novels can be easily removed from the collection from the list view.
 
-:small_orange_diamond: **User Authentication via GitHub**: Inked offers secure user authentication through GitHub or Google, ensuring a smooth and trustworthy login experience.
+:small_orange_diamond: **User Authentication via GitHub or Google**: Inked offers secure user authentication through GitHub or Google, ensuring a smooth and trustworthy login experience.
 
 :small_orange_diamond: **Toastify Feedback**: Users receive informative and user-friendly feedback using Toastify notifications, enhancing the overall user experience.
 
