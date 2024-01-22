@@ -4,6 +4,7 @@ Inked is a full-stack MERN (MongoDB, Express.js, React, Node.js) mobile web appl
 
 :small_orange_diamond: Web displayed in the netlify url: https://inked-graphic-novels.netlify.app/home
 
+Check this video for a quick grasp of Inked functionality.
 [![inked Video Demo](https://img.youtube.com/vi/liY18EvHDw8/0.jpg)](https://www.youtube.com/watch?v=liY18EvHDw8)
 
 ![inkedApp](https://media.discordapp.net/attachments/1145433728835923978/1173565417076310066/Group_139_1.png?ex=65646af7&is=6551f5f7&hm=80885825b06d6f64ad846d07e859f123bef10b1969deebf02713bc046610ab0a&=&width=472&height=662)
