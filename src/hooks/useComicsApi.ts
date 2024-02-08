@@ -19,38 +19,53 @@ const useComicsApi = () => {
   const navigate = useNavigate();
   const { limit } = useAppSelector((state) => state.comicsState);
 
-  const getComics = useCallback(async (): Promise<{
-    comics: Comic[];
-    totalComics: number;
-  }> => {
-    dispatch(showLoadingActionCreator());
+  interface FilterParams {
+    filter?: string;
+  }
 
-    const token = await user?.getIdToken();
+  const getComics = useCallback(
+    async ({
+      filter,
+    }: FilterParams): Promise<{
+      comics: Comic[];
+      totalComics: number;
+    }> => {
+      dispatch(showLoadingActionCreator());
 
-    try {
-      const { data } = await axios.get<{
-        comics: ComicApi[];
-        totalComics: number;
-      }>(`${apiUrl}/comics?limit=${limit}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const token = await user?.getIdToken();
 
-      dispatch(hideLoadingActionCreator());
+      try {
+        let url = `${apiUrl}/comics?limit=${limit}`;
 
-      const comics = data.comics.map<Comic>(({ _id, ...comics }) => ({
-        ...comics,
-        id: _id,
-      }));
+        if (filter) {
+          url += `&filter=${filter}`;
+        }
 
-      return { comics, totalComics: data.totalComics };
-    } catch {
-      dispatch(hideLoadingActionCreator());
+        const { data } = await axios.get<{
+          comics: ComicApi[];
+          totalComics: number;
+        }>(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-      showFeedback("Couldn't load Graphic Novels", "error");
+        dispatch(hideLoadingActionCreator());
 
-      throw new Error("Couldn't load Graphic Novels");
-    }
-  }, [apiUrl, user, dispatch, limit]);
+        const comics = data.comics.map<Comic>(({ _id, ...comics }) => ({
+          ...comics,
+          id: _id,
+        }));
+
+        return { comics, totalComics: data.totalComics };
+      } catch {
+        dispatch(hideLoadingActionCreator());
+
+        showFeedback("Couldn't load Graphic Novels", "error");
+
+        throw new Error("Couldn't load Graphic Novels");
+      }
+    },
+    [apiUrl, user, dispatch, limit],
+  );
 
   const deleteComic = async (id: string) => {
     dispatch(showLoadingActionCreator());
