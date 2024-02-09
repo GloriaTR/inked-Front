@@ -1,0 +1,15 @@
+.filter {
+  font-size: 1.2rem;
+  font: inherit;
+  border: 1px solid var(--color-green-dark);
+  border-radius: 8px;
+  outline-color: var(--color-orange-dark);
+  padding: 15px;
+  width: 280px;
+  margin-bottom: 70px;
+  background-color: #fff;
+}
+
+.filter option:checked {
+  background-color: var(--color-orange-light);
+}

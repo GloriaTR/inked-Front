@@ -1,3 +1,5 @@
+import "./Filter.css";
+
 interface FilterProps {
   setFilterValue: (filterValue: string) => void;
 }
