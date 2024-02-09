@@ -29,7 +29,7 @@ const GraphicNovelsListPage = (): React.ReactElement => {
   const { totalComics } = useAppSelector((state) => state.comicsState);
   const { limit } = useAppSelector((state) => state.comicsState);
 
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {
     (async () => {

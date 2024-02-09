@@ -127,4 +127,74 @@ describe("Given a GraphicNovelsListPage page", () => {
       expect(heading).toBeInTheDocument();
     });
   });
+
+  describe("When is rendered and the user selects 'Not Read'", () => {
+    test("Then the filter value should be 'Not Read'", async () => {
+      vi.mock("react", async () => {
+        const actual: Auth = await vi.importActual("react");
+        return {
+          ...actual,
+          useEffect: vi.fn(),
+        };
+      });
+
+      const store = setupStore({
+        comicsState: {
+          comics: comicsMock,
+          totalComics: comicsMock.length,
+          limit: 5,
+        },
+      });
+
+      const selectValue = "NotRead";
+
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <GraphicNovelsListPage />
+          </BrowserRouter>
+        </Provider>,
+      );
+
+      const selectElement = screen.getByRole("combobox");
+      await userEvent.selectOptions(selectElement, selectValue);
+
+      expect(selectElement).toHaveValue(selectValue);
+    });
+  });
+
+  describe("When is rendered and the user selects 'Not Read'", () => {
+    test("Then the filter value should be 'Not Read'", async () => {
+      vi.mock("react", async () => {
+        const actual: Auth = await vi.importActual("react");
+        return {
+          ...actual,
+          useEffect: vi.fn(),
+        };
+      });
+
+      const store = setupStore({
+        comicsState: {
+          comics: comicsMock,
+          totalComics: comicsMock.length,
+          limit: 5,
+        },
+      });
+
+      const selectValue = "Read";
+
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <GraphicNovelsListPage />
+          </BrowserRouter>
+        </Provider>,
+      );
+
+      const selectElement = screen.getByRole("combobox");
+      await userEvent.selectOptions(selectElement, selectValue);
+
+      expect(selectElement).toHaveValue(selectValue);
+    });
+  });
 });
