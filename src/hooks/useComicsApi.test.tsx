@@ -57,7 +57,7 @@ describe("Given a getComics function", () => {
         },
       } = renderHook(() => useComicsApi(), { wrapper });
 
-      const comics = await getComics();
+      const comics = await getComics({ filter: "✔ Read" });
 
       expect(comics).toStrictEqual(expectedComics);
     });
@@ -73,7 +73,7 @@ describe("Given a getComics function", () => {
         },
       } = renderHook(() => useComicsApi(), { wrapper });
 
-      const comics = getComics();
+      const comics = getComics({ filter: "✔ Read" });
 
       expect(comics).rejects.toThrowError(expectedError);
     });

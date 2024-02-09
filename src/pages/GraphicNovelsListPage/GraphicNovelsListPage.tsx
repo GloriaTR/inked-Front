@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -13,6 +13,7 @@ import useComicsApi from "../../hooks/useComicsApi";
 import paths from "../../paths/paths";
 import LoadMore from "../../components/LoadMore/LoadMore";
 import ScrollButton from "../../components/ScrollButton/ScrollButton";
+import Filter from "../../components/Filter/Filter";
 import "./GraphicNovelsListPage.css";
 
 const GraphicNovelsListPage = (): React.ReactElement => {
@@ -28,10 +29,12 @@ const GraphicNovelsListPage = (): React.ReactElement => {
   const { totalComics } = useAppSelector((state) => state.comicsState);
   const { limit } = useAppSelector((state) => state.comicsState);
 
+  const [filter, setFilter] = useState<string>("");
+
   useEffect(() => {
     (async () => {
       if (user) {
-        const { comics, totalComics } = await getComics();
+        const { comics, totalComics } = await getComics({ filter });
 
         if (comics) {
           dispatch(
@@ -55,10 +58,14 @@ const GraphicNovelsListPage = (): React.ReactElement => {
         }
       }
     })();
-  }, [dispatch, getComics, user]);
+  }, [dispatch, getComics, user, filter]);
 
   const handleOnLoadMore = () => {
     dispatch(loadMoreComicsActionCreator());
+  };
+
+  const handleFilterChange = (selectedFilter: string) => {
+    setFilter(selectedFilter);
   };
 
   return (
@@ -73,6 +80,7 @@ const GraphicNovelsListPage = (): React.ReactElement => {
         </Helmet>
       </HelmetProvider>
       <h2 className="graphic-novels-page-heading">Your Graphic Novels</h2>
+
       {comics.length === 0 && !isLoadingUI && !isLoadingAuth ? (
         <>
           <p className="graphic-novels-page__no-comics">
@@ -85,6 +93,7 @@ const GraphicNovelsListPage = (): React.ReactElement => {
         </>
       ) : (
         <>
+          <Filter setFilterValue={handleFilterChange} />
           <ComicsList />
           {totalComics > limit && <LoadMore actionOnClick={handleOnLoadMore} />}
           <ScrollButton />
