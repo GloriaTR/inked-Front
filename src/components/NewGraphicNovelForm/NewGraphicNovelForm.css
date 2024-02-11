@@ -1,7 +1,8 @@
 .new-graphic-novel {
   display: flex;
   flex-direction: column;
-  font-size: 1.2rem;
+  width: 100%;
+  font-size: 1.08rem;
 }
 
 .new-graphic-novel__input,
