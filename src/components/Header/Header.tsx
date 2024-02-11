@@ -7,8 +7,8 @@ const Header = (): React.ReactElement => {
         <img
           src="/img/logoInkedHeader.webp"
           alt="Inked logo"
-          width="46"
-          height="53"
+          width="40"
+          height="46"
         />
         <h1 className="header__title">inked</h1>
       </div>
