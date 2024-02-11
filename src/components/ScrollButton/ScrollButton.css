@@ -6,9 +6,9 @@
 }
 
 .icon-style {
-  background-color: var(--color-orange-dark);
-  width: 48px;
-  height: 48px;
+  background-color: #ff6726cc;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   color: #fff;
 }
