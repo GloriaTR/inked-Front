@@ -5,13 +5,13 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 15px 0;
+  padding: 10px 0;
 }
 
 .navigation-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: stretch;
+  align-items: end;
   justify-items: center;
 }
 
@@ -21,11 +21,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
 }
 
-.navigation__text {
-  font-size: 1.1rem;
+.navigation-list__text {
+  font-size: 0.9rem;
 }
 
 .navigation-list__link,

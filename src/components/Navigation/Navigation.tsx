@@ -39,8 +39,8 @@ const Navigation = (): React.ReactElement => {
                       : "/img/homeIconBlack.svg"
                   }
                   alt="home icon"
-                  width="36"
-                  height="36"
+                  width="30"
+                  height="30"
                 />
                 <span className="navigation-list__text">My List</span>
               </NavLink>
@@ -57,8 +57,8 @@ const Navigation = (): React.ReactElement => {
                       : "/img/createIconBlack.svg"
                   }
                   alt="create icon"
-                  width="36"
-                  height="36"
+                  width="30"
+                  height="30"
                 />
                 <span className="navigation-list__text">Create</span>
               </NavLink>
@@ -71,8 +71,8 @@ const Navigation = (): React.ReactElement => {
                 <img
                   src="/img/logOutButtonBlack.svg"
                   alt="Logout button icon"
-                  width="36"
-                  height="36"
+                  width="30"
+                  height="30"
                 />
                 <span className="navigation-list__text">Log Out</span>
               </Button>
