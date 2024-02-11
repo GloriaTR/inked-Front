@@ -31,7 +31,7 @@
 .comic__release-date {
   color: #4c4747;
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 1.2rem;
   display: flex;
   align-items: flex-end;
   width: 100px;
@@ -68,7 +68,7 @@
   right: 14px;
   bottom: 20px;
   width: 150px;
-  height: 48px;
+  height: 44px;
   font-size: 1.08rem;
   font-weight: 700;
   border-radius: 4px;
@@ -80,9 +80,4 @@
 
 .comic__read-button--unread {
   background-color: var(--color-orange-dark);
-}
-
-.comic__release-date::after {
-  content: "\a";
-  white-space: pre;
 }
