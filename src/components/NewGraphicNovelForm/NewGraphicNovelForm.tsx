@@ -56,15 +56,6 @@ const NewGraphicNovelForm = ({
 
   return (
     <form className="new-graphic-novel" onSubmit={submitForm}>
-      <label htmlFor="image">Graphic Novel image</label>
-      <input
-        type="url"
-        id="image"
-        className="new-graphic-novel__input"
-        required
-        value={newComic.image}
-        onChange={changeNewComic}
-      />
       <label htmlFor="title">Graphic Novel title</label>
       <input
         type="text"
@@ -74,13 +65,13 @@ const NewGraphicNovelForm = ({
         value={newComic.title}
         onChange={changeNewComic}
       />
-      <label htmlFor="authorName">Author name</label>
+      <label htmlFor="image">Graphic Novel image</label>
       <input
-        type="text"
-        id="authorName"
+        type="url"
+        id="image"
         className="new-graphic-novel__input"
         required
-        value={newComic.authorName}
+        value={newComic.image}
         onChange={changeNewComic}
       />
       <label htmlFor="synopsis">Synopsis</label>
@@ -93,6 +84,16 @@ const NewGraphicNovelForm = ({
         value={newComic.synopsis}
         onChange={changeNewComic}
       ></textarea>
+      <label htmlFor="releaseDate">Year of release</label>
+      <input
+        type="number"
+        id="releaseDate"
+        min="1980"
+        max="2023"
+        className="new-graphic-novel__input"
+        value={newComic.releaseDate === 0 ? "" : newComic.releaseDate}
+        onChange={changeNewComic}
+      />
       <label htmlFor="genre">Genre</label>
       <select
         id="genre"
@@ -130,14 +131,13 @@ const NewGraphicNovelForm = ({
         <option value="Paperback">Paperback</option>
         <option value="Softcover">Softcover</option>
       </select>
-      <label htmlFor="releaseDate">Year of release</label>
+      <label htmlFor="authorName">Author name</label>
       <input
-        type="number"
-        id="releaseDate"
-        min="1980"
-        max="2023"
+        type="text"
+        id="authorName"
         className="new-graphic-novel__input"
-        value={newComic.releaseDate === 0 ? "" : newComic.releaseDate}
+        required
+        value={newComic.authorName}
         onChange={changeNewComic}
       />
       <label htmlFor="authorImage">Author image</label>
